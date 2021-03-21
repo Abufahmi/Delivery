@@ -11,9 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delivery.Mobile.iOS", "Deli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delivery.Mobile", "Delivery.Mobile\Delivery.Mobile\Delivery.Mobile.csproj", "{023E73D5-80A1-4418-92CD-ED188E22DFC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delivery.Models", "Delivery.Models\Delivery.Models.csproj", "{FAA603E4-669A-4A10-8819-23D9E0ED3D48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delivery.Models", "Delivery.Models\Delivery.Models.csproj", "{FAA603E4-669A-4A10-8819-23D9E0ED3D48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delivery.API", "Delivery.API\Delivery.API.csproj", "{6E1B1943-EAF3-48C4-9B57-E41BD50ABEDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delivery.API", "Delivery.API\Delivery.API.csproj", "{6E1B1943-EAF3-48C4-9B57-E41BD50ABEDB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{484EA110-BDA9-4160-9C00-527E09B2B51A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -226,6 +228,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A2E0DB80-FCC5-4C0A-B4C4-FA472EF59205} = {484EA110-BDA9-4160-9C00-527E09B2B51A}
+		{CE6AB556-5038-4BD0-895A-46145D6B8F55} = {484EA110-BDA9-4160-9C00-527E09B2B51A}
+		{C3728E97-1883-4DF9-87CC-0C739215F36D} = {484EA110-BDA9-4160-9C00-527E09B2B51A}
+		{023E73D5-80A1-4418-92CD-ED188E22DFC6} = {484EA110-BDA9-4160-9C00-527E09B2B51A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EEFD6F56-8FEB-4F48-9B02-056414A4886A}

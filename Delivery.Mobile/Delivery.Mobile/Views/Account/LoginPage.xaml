@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Delivery.Mobile.Views.Account.LoginPage">
+    <ContentPage.Content>
+        <StackLayout 
+            Padding="15, 0"
+            VerticalOptions="CenterAndExpand">
+            <Image 
+                x:Name="logImage"
+                HeightRequest="250"
+                Aspect="Fill"/>
+            <Entry 
+                x:Name="txtEmail"
+                Keyboard="Email"
+                Placeholder="Email address" />
+            <Entry 
+                x:Name="txtPassword"
+                IsPassword="True"
+                Placeholder="Enter Password"/>
+            <Button 
+                Clicked="Button_Clicked"
+                Text="Login"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

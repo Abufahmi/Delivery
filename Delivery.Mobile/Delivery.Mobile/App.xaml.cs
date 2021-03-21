@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Delivery.Mobile.Views.Account;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace Delivery.Mobile
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()
