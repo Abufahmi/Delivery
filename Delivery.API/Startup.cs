@@ -1,7 +1,11 @@
+using Delivery.API.Data;
+using Delivery.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,7 +35,18 @@ namespace Delivery.API
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Delivery.API", Version = "v1" });
+                c.ResolveConflictingActions(e => e.First());
             });
+
+            services.AddDbContext<ApplicationDb>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options=> 
+            { 
+            
+            }).AddEntityFrameworkStores<ApplicationDb>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
