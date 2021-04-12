@@ -1,15 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Delivery.Mobile.Views.Account.LoginPage">
+             xmlns:local="clr-namespace:Delivery.Mobile.Services"
+             x:Class="Delivery.Mobile.Views.Account.RegisterPage">
     <ContentPage.Content>
         <StackLayout 
             Padding="15, 0"
             VerticalOptions="CenterAndExpand">
             <Image 
                 x:Name="logImage"
+                Source="{local:ImageResource Delivery.Mobile.Assets.images.register.png}"
                 HeightRequest="250"
                 Aspect="Fill"/>
+            <Entry 
+                x:Name="txtUserName"
+                Keyboard="Text"
+                Placeholder="User Name" />
             <Entry 
                 x:Name="txtEmail"
                 Keyboard="Email"
@@ -18,9 +24,14 @@
                 x:Name="txtPassword"
                 IsPassword="True"
                 Placeholder="Enter Password"/>
+            <Entry 
+                x:Name="txtPasswordConfirm"
+                IsPassword="True"
+                Placeholder="ReEnter Password"/>
             <Button 
-                Clicked="Button_Clicked"
-                Text="Login"/>
+                x:Name="btnReister"
+                Clicked="btnReister_Clicked"
+                Text="Register"/>
 
             <StackLayout
                 Margin="20"
@@ -28,10 +39,11 @@
                 HorizontalOptions="Center">
                 <Label Text="Dont have account?"/>
                 <Button 
-                    x:Name="btnRegister"
-                    Clicked="btnRegister_Clicked"
-                    Text="Register"/>
+                    x:Name="btnLogin"
+                    Clicked="btnLogin_Clicked"
+                    Text="Login"/>
             </StackLayout>
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

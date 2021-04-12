@@ -52,5 +52,10 @@ namespace Delivery.Mobile.Views.Account
 
             await DisplayAlert("Login", email, "OK");
         }
+
+        private async void btnRegister_Clicked(object sender, EventArgs e)
+        {
+           await Navigation.PushAsync(new RegisterPage());
+        }
     }
 }

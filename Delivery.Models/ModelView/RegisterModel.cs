@@ -16,7 +16,7 @@ namespace Delivery.Models.ModelView
         [Required, DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required, DataType(DataType.Password), Compare("Passowrd")]
+        [Required, DataType(DataType.Password), Compare("Password")]
         public string PasswordConfirm { get; set; }
     }
 }

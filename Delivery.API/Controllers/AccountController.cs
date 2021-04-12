@@ -1,4 +1,5 @@
 ﻿using Delivery.API.Repository.Account;
+using Delivery.API.Services;
 using Delivery.Models.ModelView;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -28,8 +29,13 @@ namespace Delivery.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await repo.RegisterAsync();
+                var user = await repo.RegisterAsync(register);
+                if (user != null)
+                    return Ok();
             }
+            if (AppServices.ErrorMessage != null)
+                return BadRequest(AppServices.ErrorMessage);
+
             return BadRequest();
         }
     }

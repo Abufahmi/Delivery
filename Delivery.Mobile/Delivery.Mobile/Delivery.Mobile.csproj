@@ -12,10 +12,12 @@
 
   <ItemGroup>
     <None Remove="Assets\images\Login.png" />
+    <None Remove="Assets\images\register.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\images\Login.png" />
+    <EmbeddedResource Include="Assets\images\register.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,7 +26,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Delivery.Models\Delivery.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Views\Account\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Account\RegisterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
