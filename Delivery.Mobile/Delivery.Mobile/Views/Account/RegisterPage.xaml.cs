@@ -1,4 +1,5 @@
 ﻿using Delivery.Mobile.Repository.User;
+using Delivery.Mobile.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace Delivery.Mobile.Views.Account
                 return;
             }
 
-            if(txtPassword.Text.Length < 6)
+            if (txtPassword.Text.Length < 6)
             {
                 await DisplayAlert("Register", "password must be at least 6 char", "OK");
                 return;
@@ -48,6 +49,14 @@ namespace Delivery.Mobile.Views.Account
 
             IUserRepository repository = new UserRepository();
             var register = await repository.RegisterAsync(txtUserName.Text, txtEmail.Text, txtPassword.Text, txtPasswordConfirm.Text);
+            if (!register)
+            {
+                if (AppServices.Error != null)
+                {
+                    await DisplayAlert("Error", AppServices.Error, "OK");
+                }
+                return;
+            }
         }
 
         private void btnLogin_Clicked(object sender, EventArgs e)

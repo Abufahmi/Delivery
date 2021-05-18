@@ -8,9 +8,11 @@
             Padding="15, 0"
             VerticalOptions="CenterAndExpand">
             <Image 
+                Margin="20"
                 x:Name="logImage"
-                Source="{local:ImageResource Delivery.Mobile.Assets.images.register.png}"
+                Source="{local:ImageResource Delivery.Mobile.Assets.images.register.jpg}"
                 HeightRequest="250"
+                WidthRequest="250"
                 Aspect="Fill"/>
             <Entry 
                 x:Name="txtUserName"
