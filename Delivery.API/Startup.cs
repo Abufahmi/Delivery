@@ -45,8 +45,11 @@ namespace Delivery.API
             });
 
             services.AddIdentity<ApplicationUser, ApplicationRole>(options=> 
-            { 
-            
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireUppercase = true;
+                options.SignIn.RequireConfirmedEmail = true;
             }).AddEntityFrameworkStores<ApplicationDb>();
         }
 

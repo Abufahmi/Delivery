@@ -1,6 +1,7 @@
 ﻿using Delivery.Mobile.Views.Account;
 using System;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 using Xamarin.Forms.Xaml;
 
 namespace Delivery.Mobile
@@ -14,7 +15,15 @@ namespace Delivery.Mobile
             InitializeComponent();
 
             MainPage = new NavigationPage(new LoginPage());
-            BaseApi = "https://localhost:44394/";
+            if (DeviceInfo.Platform == DevicePlatform.UWP)
+            {
+                BaseApi = "https://localhost:44394/";
+            }
+            else
+            {
+                BaseApi = "https://192.168.1.142:436/";
+            }
+
         }
 
         protected override void OnStart()
