@@ -20,6 +20,37 @@ namespace Delivery.Mobile.Repository.User
             handler = new HttpClientHandler();
         }
 
+        public async Task<bool> LoginAsync(string email, string password)
+        {
+            handler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+            var client = new HttpClient(handler);
+            var model = new LoginModel
+            {
+                Email = email,
+                Password = password
+            };
+
+            var json = JsonConvert.SerializeObject(model);
+            HttpContent httpContent = new StringContent(json);
+            httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            try
+            {
+                var result = await client.PostAsync($"{App.BaseApi}api/Account/Login", httpContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+
+                AppServices.Error = await result.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                AppServices.Error = ex.Message;
+            }
+
+            return false;
+        }
+
         public async Task<bool> RegisterAsync(string username, string email, string password, string passwordConfirm)
         {
             handler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };

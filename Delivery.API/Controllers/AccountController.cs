@@ -38,5 +38,22 @@ namespace Delivery.API.Controllers
 
             return BadRequest();
         }
+
+        // Login
+        [Route("Login")]
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginModel login)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await repo.LoginAsync(login);
+                if (result)
+                    return Ok();
+            }
+            if (AppServices.ErrorMessage != null)
+                return BadRequest(AppServices.ErrorMessage);
+
+            return BadRequest();
+        }
     }
 }

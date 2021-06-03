@@ -40,7 +40,7 @@
                     IsVisible="{Binding IsEmailValid}"
                     Margin="0,-5,0,0"
                     TextColor="Red"
-                    Text="Email address is required"/>
+                    Text="{Binding EmailMessage}"/>
 
                 <Entry 
                     Text="{Binding Password}"
@@ -50,7 +50,7 @@
                     IsVisible="{Binding IsPasswordValid}"
                     Margin="0,-5,0,0"
                     TextColor="Red"
-                    Text="Password is required"/>
+                    Text="{Binding PassMessage}"/>
 
                 <Entry 
                     Text="{Binding PasswordConfirm}"
@@ -60,7 +60,7 @@
                     IsVisible="{Binding IsPasswordConfirmValid}"
                     Margin="0,-5,0,0"
                     TextColor="Red"
-                    Text="Password Confirm is required"/>
+                    Text="{Binding PassConfirmMessage}"/>
 
                 <Button 
                 Command="{Binding RegisterCommand}"

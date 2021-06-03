@@ -8,5 +8,6 @@ namespace Delivery.Mobile.Repository.User
     public interface IUserRepository
     {
         Task<bool> RegisterAsync(string username, string email, string password, string passwordConfirm);
+        Task<bool> LoginAsync(string email, string password);
     }
 }
