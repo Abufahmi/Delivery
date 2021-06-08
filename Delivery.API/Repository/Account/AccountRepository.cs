@@ -25,19 +25,19 @@ namespace Delivery.API.Repository.Account
             AppServices.ErrorMessage = null;
         }
 
-        public async Task<bool> LoginAsync(LoginModel login)
+        public async Task<ApplicationUser> LoginAsync(LoginModel login)
         {
             var user = await _userManager.FindByEmailAsync(login.Email);
             if (user == null)
             {
                 AppServices.ErrorMessage = "Account not existes";
-                return false;
+                return null;
             }
 
             var result = await _signInManager.PasswordSignInAsync(user, login.Password, true, false);
             if (result.Succeeded)
             {
-                return true;
+                return user;
             }
             else
             {
@@ -52,7 +52,7 @@ namespace Delivery.API.Repository.Account
                 AppServices.ErrorMessage = "Account not existes";
             }
 
-            return false;
+            return null;
         }
 
         public async Task<ApplicationUser> RegisterAsync(RegisterModel register)

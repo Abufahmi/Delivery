@@ -10,6 +10,6 @@ namespace Delivery.API.Repository.Account
     public interface IAccountRepository
     {
         Task<ApplicationUser> RegisterAsync(RegisterModel register);
-        Task<bool> LoginAsync(LoginModel login);
+        Task<ApplicationUser> LoginAsync(LoginModel login);
     }
 }

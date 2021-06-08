@@ -38,6 +38,18 @@ namespace Delivery.Mobile.Repository.User
                 var result = await client.PostAsync($"{App.BaseApi}api/Account/Login", httpContent);
                 if (result.IsSuccessStatusCode)
                 {
+                    var data = await result.Content.ReadAsStringAsync();
+                    var tokenModel = JsonConvert.DeserializeObject<TokenModel>(data);
+                    if(tokenModel != null)
+                    {
+                        client = new HttpClient(handler);
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenModel.Token);
+                        result = await client.GetAsync($"{App.BaseApi}api/Account/Test");
+                        if (result.IsSuccessStatusCode)
+                        {
+                            return true;
+                        }
+                    }
                     return true;
                 }
 
