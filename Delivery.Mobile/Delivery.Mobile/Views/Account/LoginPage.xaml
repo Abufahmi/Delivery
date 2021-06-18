@@ -38,15 +38,23 @@
                 Text="Password is required"/>
             <Button 
                 Command="{Binding LoginCommand}"
+                Margin="0,20,0,0"
+                WidthRequest="150"
+                Style="{StaticResource PrimaryButton}"
                 Text="Login"/>
 
             <StackLayout
                 Margin="20"
                 Orientation="Horizontal"
                 HorizontalOptions="Center">
-                <Label Text="Dont have account?"/>
+                <Label 
+                    Margin="0,12,0,0"
+                    Text="Dont have account?"/>
                 <Button 
                     Command="{Binding RegisterCommand}"
+                    Style="{StaticResource LinkButton}"
+                    BackgroundColor="Transparent"
+                    TextColor="#0d6efd"
                     Text="Register"/>
             </StackLayout>
         </StackLayout>

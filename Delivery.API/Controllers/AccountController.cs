@@ -58,12 +58,16 @@ namespace Delivery.API.Controllers
                 var user = await repo.LoginAsync(login);
                 if (user != null)
                 {
+                    await repo.IsInRoleAsync(user);
+                    var roleName = await repo.GetRoleNameByUserId(user.Id);
+                    if (roleName == null || string.IsNullOrEmpty(roleName))
+                        return BadRequest();
                     var model = new TokenModel
                     {
                         Email = user.Email,
                         UserName = user.UserName,
-                        Token = await GenerateToken(user),
-                        Role = "User"
+                        Token = await GenerateToken(user, roleName),
+                        Role = roleName
                     };
                     return model;
                 }
@@ -74,7 +78,7 @@ namespace Delivery.API.Controllers
             return BadRequest();
         }
 
-        private async Task<string> GenerateToken(ApplicationUser user)
+        private async Task<string> GenerateToken(ApplicationUser user, string roleName)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_config.GetSection("AppSettings:SecretKey").Value);
@@ -85,6 +89,7 @@ namespace Delivery.API.Controllers
                     new Claim(ClaimTypes.NameIdentifier, user.Id),
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.Role, roleName)
                 }),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
                 Expires = DateTime.UtcNow.AddYears(1),
@@ -94,7 +99,7 @@ namespace Delivery.API.Controllers
             return await Task.FromResult(strTokn);
         }
 
-        [Authorize]
+        [Authorize(Roles = "User")]
         [Route("Test")]
         [HttpGet]
         public IActionResult Test()
@@ -102,5 +107,7 @@ namespace Delivery.API.Controllers
             var name = User.FindFirst(ClaimTypes.Name)?.Value;
             return Ok();
         }
+
+
     }
 }

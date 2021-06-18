@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Delivery.Mobile.Styles.ButtonStyles">
+
+    <Style x:Key="PrimaryButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="#0d6efd" />
+        <Setter Property="BorderColor" Value="#0d6efd" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+    </Style>
+
+    <Style x:Key="SuccessButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="#198754" />
+        <Setter Property="BorderColor" Value="#198754" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+    </Style>
+
+    <Style x:Key="DangertButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="#dc3545" />
+        <Setter Property="BorderColor" Value="#dc3545" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+    </Style>
+
+    <Style x:Key="LinkButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="#0d6efd" />
+    </Style>
+
+</ResourceDictionary>

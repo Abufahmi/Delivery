@@ -11,5 +11,7 @@ namespace Delivery.API.Repository.Account
     {
         Task<ApplicationUser> RegisterAsync(RegisterModel register);
         Task<ApplicationUser> LoginAsync(LoginModel login);
+        Task IsInRoleAsync(ApplicationUser user);
+        Task<string> GetRoleNameByUserId(string id);
     }
 }

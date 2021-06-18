@@ -1,5 +1,6 @@
 ﻿using Delivery.Mobile.Repository.User;
 using Delivery.Mobile.Services;
+using Delivery.Mobile.Views;
 using Delivery.Mobile.Views.Account;
 using System;
 using System.Collections.Generic;
@@ -220,7 +221,19 @@ namespace Delivery.Mobile.ViewModels.Accounts
                 }
                 return;
             }
+
+            repository = new UserRepository();
             await App.Current.MainPage.DisplayAlert("Register", "Registration Success", "OK");
+            var login = await repository.LoginAsync(Email, Password);
+            if (login)
+            {
+                await App.Current.MainPage.Navigation.PushAsync(new HomePage());
+            }
+            else
+            {
+                if (AppServices.Error != null)
+                    await App.Current.MainPage.DisplayAlert("Login", AppServices.Error, "Ok");
+            }
         }
 
         private bool ValidateEntry()

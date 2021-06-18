@@ -16,17 +16,39 @@ namespace Delivery.API.Repository.Account
         private readonly ApplicationDb _db;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
 
-        public AccountRepository(ApplicationDb db, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountRepository(ApplicationDb db, UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager)
         {
             _db = db;
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
             AppServices.ErrorMessage = null;
+        }
+
+        public async Task<string> GetRoleNameByUserId(string id)
+        {
+            var userRole = await _db.UserRoles.FirstOrDefaultAsync(x => x.UserId == id);
+            return await _db.Roles.Where(x => x.Id == userRole.RoleId).Select(x => x.Name).FirstOrDefaultAsync();
+        }
+
+        public async Task IsInRoleAsync(ApplicationUser user)
+        {
+            if (await _roleManager.RoleExistsAsync("User"))
+            {
+                if (!await _userManager.IsInRoleAsync(user, "User") && !await _userManager.IsInRoleAsync(user, "Admin"))
+                {
+                    await _userManager.AddToRoleAsync(user, "User");
+                }
+            }
         }
 
         public async Task<ApplicationUser> LoginAsync(LoginModel login)
         {
+            await CheckOrCreateRoles();
+
             var user = await _userManager.FindByEmailAsync(login.Email);
             if (user == null)
             {
@@ -57,6 +79,8 @@ namespace Delivery.API.Repository.Account
 
         public async Task<ApplicationUser> RegisterAsync(RegisterModel register)
         {
+            await CheckOrCreateRoles();
+
             if (await _db.Users.AnyAsync(x => x.UserName == register.UserName))
             {
                 AppServices.ErrorMessage = "UserName Exists try anotehr one...";
@@ -89,6 +113,29 @@ namespace Delivery.API.Repository.Account
             }
 
             return null;
+        }
+
+        private async Task CheckOrCreateRoles()
+        {
+            var admin = await _roleManager.FindByNameAsync("Admin");
+            if (admin == null)
+            {
+                var role = new ApplicationRole
+                {
+                    Name = "Admin"
+                };
+                await _roleManager.CreateAsync(role);
+            }
+
+            var user = await _roleManager.FindByNameAsync("User");
+            if (user == null)
+            {
+                var role = new ApplicationRole
+                {
+                    Name = "User"
+                };
+                await _roleManager.CreateAsync(role);
+            }
         }
     }
 }

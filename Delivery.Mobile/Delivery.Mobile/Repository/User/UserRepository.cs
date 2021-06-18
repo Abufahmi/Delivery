@@ -12,7 +12,7 @@ namespace Delivery.Mobile.Repository.User
 {
     public class UserRepository : IUserRepository
     {
-       private HttpClientHandler handler;
+        private HttpClientHandler handler;
 
         public UserRepository()
         {
@@ -40,17 +40,21 @@ namespace Delivery.Mobile.Repository.User
                 {
                     var data = await result.Content.ReadAsStringAsync();
                     var tokenModel = JsonConvert.DeserializeObject<TokenModel>(data);
-                    if(tokenModel != null)
+                    if (tokenModel != null)
                     {
-                        client = new HttpClient(handler);
-                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenModel.Token);
-                        result = await client.GetAsync($"{App.BaseApi}api/Account/Test");
-                        if (result.IsSuccessStatusCode)
-                        {
-                            return true;
-                        }
+                        Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("token", tokenModel.Token);
+                        Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("pass", password);
+                        Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("username", tokenModel.UserName);
+                        Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("role", tokenModel.Role);
+                        Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("email", tokenModel.Email);
+
+                        App.Email = tokenModel.Email;
+                        App.Password = password;
+                        App.Token = tokenModel.Token;
+                        App.UserName = tokenModel.UserName;
+                        App.Role = tokenModel.Role;
+                        return true;
                     }
-                    return true;
                 }
 
                 AppServices.Error = await result.Content.ReadAsStringAsync();

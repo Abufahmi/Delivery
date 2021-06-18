@@ -1,5 +1,6 @@
 ﻿using Delivery.Mobile.Repository.User;
 using Delivery.Mobile.Services;
+using Delivery.Mobile.Views;
 using Delivery.Mobile.Views.Account;
 using System;
 using System.Collections.Generic;
@@ -118,7 +119,7 @@ namespace Delivery.Mobile.ViewModels.Accounts
             var login = await repository.LoginAsync(Email, Password);
             if (login)
             {
-                await App.Current.MainPage.DisplayAlert("Login", "Login success ...", "Ok");
+                await App.Current.MainPage.Navigation.PushAsync(new HomePage());
             }
             else
             {
