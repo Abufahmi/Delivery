@@ -11,11 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Fonts\Font Awesome 5 Free-Solid-900.otf" />
     <None Remove="Assets\images\Login.png" />
     <None Remove="Assets\images\Register.jpg" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Assets\Fonts\Font Awesome 5 Free-Solid-900.otf" />
     <EmbeddedResource Include="Assets\images\Login.png" />
     <EmbeddedResource Include="Assets\images\register.jpg" />
   </ItemGroup>
@@ -33,6 +35,9 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Styles\ButtonStyles.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Styles\FontAwesomeStyles.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Themes\LightTheme.xaml">

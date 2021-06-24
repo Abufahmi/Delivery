@@ -5,6 +5,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms.Xaml;
 using Delivery.Mobile.Views;
 
+[assembly: ExportFont("Font Awesome 5 Free-Solid-900.otf", Alias = "FontAwesome")]
 namespace Delivery.Mobile
 {
     public partial class App : Application

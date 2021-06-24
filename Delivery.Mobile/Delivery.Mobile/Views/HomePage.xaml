@@ -10,12 +10,13 @@
             <StackLayout 
                 Padding="10"
                 Margin="0"
-                BackgroundColor="Aquamarine"
+                BackgroundColor="#0d6efd"
                 Orientation="Horizontal">
                 <Button 
                     HorizontalOptions="Start"
                     Clicked="Button_Clicked"
-                    Text="login"/>
+                    Style="{StaticResource IconButton}"
+                    Text="{StaticResource user_alt}"/>
             </StackLayout>
             <StackLayout>
 

@@ -32,4 +32,11 @@
         <Setter Property="TextColor" Value="#0d6efd" />
     </Style>
 
+    <Style x:Key="IconButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="FontFamily" Value="FontAwesome" />
+    </Style>
+
 </ResourceDictionary>
